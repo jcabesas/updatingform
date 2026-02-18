@@ -1,25 +1,35 @@
-const scriptURL = "https://script.google.com/macros/s/AKfycbxgcHk1ah92ttOc_sJB6qpm9TV5C-dOy_aa8t6tfI8xwq04Dku7Bm5ov551RvJ3apisEw/exec";
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxxTTqqnZmcOeJLFDV0kFIWk5JHn_Kcrix1z0O2vQBI45e7BmbbKoKWhECwegUwUyI7Xw/exec';
+const form = document.getElementById("memberForm");
+const messageDiv = document.getElementById("formMessage");
 
-document.getElementById("memberForm").addEventListener("submit", function(e) {
+form.addEventListener("submit", function(e) {
   e.preventDefault();
 
   const formData = new FormData(this);
 
   fetch(scriptURL, {
-    method: "POST",
+    method: 'POST',
     body: formData
   })
-  .then(response => response.text())
-  .then(result => {
-    if (result === "success") {
-      alert("Membership Successful! Thank you for submitting your application.");
-      this.reset();
-    } else {
-      alert("Error submitting form.");
-    }
+  .then(response => {
+    messageDiv.textContent = "Thank you for filling out the form. Please wait for our response to the email you provided. Rest assured that we will carefully review all the information you submitted. If anything is missing or needs clarification, we will reach out to you as soon as possible.";
+    messageDiv.className = "form-message success";
+    messageDiv.style.display = "block";
+    form.reset();
+
+    // Auto-hide after 10 seconds
+    setTimeout(() => {
+      messageDiv.style.display = "none";
+    }, 10000);
   })
   .catch(error => {
-    console.error("Error!", error);
-    alert("Submission failed.");
+    console.error(error);
+    messageDiv.textContent = "Submission failed. Please try again.";
+    messageDiv.className = "form-message error";
+    messageDiv.style.display = "block";
+
+    setTimeout(() => {
+      messageDiv.style.display = "none";
+    }, 10000);
   });
 });

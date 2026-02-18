@@ -1,29 +1,25 @@
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwTDGbccU4usAt_H6ee4pQNZfuHgqRzgign_dDBD4-zEBnzfnqr7Y1WQyrCSddXoVoE/exec';
+const scriptURL = "https://script.google.com/macros/s/AKfycbxgcHk1ah92ttOc_sJB6qpm9TV5C-dOy_aa8t6tfI8xwq04Dku7Bm5ov551RvJ3apisEw/exec";
 
 document.getElementById("memberForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
   const formData = new FormData(this);
-  const data = Object.fromEntries(formData.entries());
 
   fetch(scriptURL, {
     method: "POST",
-    body: JSON.stringify(data)
+    body: formData
   })
-  .then(res => res.json())
-  .then(response => {
-    if (response.result === "success") {
-      alert("Membership Successful!
-Thank you for submitting your application. Please wait for our confirmation email as we double-check all the information you provided. Kindly monitor the email address you used for registration.
-
-Thank you! 😊");
+  .then(response => response.text())
+  .then(result => {
+    if (result === "success") {
+      alert("Membership Successful! Thank you for submitting your application.");
       this.reset();
     } else {
       alert("Error submitting form.");
     }
   })
   .catch(error => {
-    console.error(error);
+    console.error("Error!", error);
     alert("Submission failed.");
   });
 });

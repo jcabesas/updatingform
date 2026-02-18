@@ -13,7 +13,10 @@ document.getElementById("memberForm").addEventListener("submit", function(e) {
   .then(res => res.json())
   .then(response => {
     if (response.result === "success") {
-      alert("Membership updated successfully!");
+      alert("Membership Successful!
+Thank you for submitting your application. Please wait for our confirmation email as we double-check all the information you provided. Kindly monitor the email address you used for registration.
+
+Thank you! 😊");
       this.reset();
     } else {
       alert("Error submitting form.");

@@ -1,31 +1,28 @@
-const form = document.getElementById('memberForm');
-form.addEventListener('submit', async (e) => {
+const scriptURL = "https://script.google.com/macros/s/AKfycbzeX1IHpviMt__OtAYohjHkCtggXtODXxGlz3VVu-zAj_QUfg5QbLz1k-c9eoM9zlF9lg/exec";
+
+document.getElementById("memberForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  const msg = document.getElementById('formMessage');
-  
-  // Prepare form data
+  const form = this;
   const formData = new FormData(form);
-  const url = "https://script.google.com/macros/s/AKfycbxRJuoxpcGci_075hmYKmhl5mNQCPCZcJPbCRzZZdX18OEFJtpR58k50vV4rqcYJdvQVw/exec"; // paste your deployed web app URL
+  const data = Object.fromEntries(formData.entries());
 
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      body: new URLSearchParams(formData)
-    });
-    const result = await response.json();
+  const message = document.getElementById("formMessage");
+  message.innerHTML = "Submitting... Please wait.";
+  message.style.color = "blue";
 
-    if(result.result === "success"){
-      msg.innerText = "Thank you! Your information has been submitted successfully.";
-      msg.style.color = "green";
-      form.reset();
-    } else {
-      msg.innerText = "Error submitting form: " + result.message;
-      msg.style.color = "red";
-    }
-
-  } catch (error) {
-    msg.innerText = "Network error: " + error.message;
-    msg.style.color = "red";
-  }
+  fetch(scriptURL, {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => {
+    message.innerHTML = "✅ Membership submitted successfully!";
+    message.style.color = "green";
+    form.reset();
+  })
+  .catch(error => {
+    message.innerHTML = "❌ Error submitting form. Please try again.";
+    message.style.color = "red";
+  });
 });

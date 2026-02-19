@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Iwahori Multi-Purpose Cooperative Membership Form</title>
+  <title>Iwahori MPC Membership Form</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -36,6 +36,7 @@
               <option>Widowed</option>
               <option>Separated</option>
               <option>Solo-Parent</option>
+              <option>Living with Partner</option>
             </select>
           </div>
           <div class="input-group">
@@ -76,7 +77,7 @@
           </div>
           <div class="input-group">
             <label>Mobile Number</label>
-            <input type="tel" name="mobileNumber" required>
+            <input type="tel" name="mobileNumber" pattern="[0-9]{11}" title="Enter 11-digit mobile number" required>
           </div>
           <div class="input-group">
             <label>Email</label>
@@ -101,6 +102,8 @@
             <option>Mortgage</option>
             <option>Renter</option>
             <option>Living with parents</option>
+            <option>Rent-To-Own</option>
+            <option>Company Housing</option>
           </select>
         </div>
       </div>
@@ -111,27 +114,35 @@
         <div class="grid">
           <div class="input-group">
             <label>Education Level</label>
-            <select name="education">
+            <select name="educationLevel">
               <option value="">Select</option>
               <option>UnderGrad Elementary</option>
-              <option>On-Going Elementary</option>
-              <option>Elementary Graduated</option>
+              <option>Elementary Level</option>
+              <option>Elementary Graduate</option>
               <option>UnderGrad Highschool</option>
-              <option>On-going Highschool</option>
-               <option>Highschool Graduated</option>
-              <option>On-going K to 12</option>
+              <option>Highschool Level</option>
+              <option>Highschool Graduate</option>
+              <option>K to 12 Level</option>
               <option>UnderGrad K to 12</option>
-              <option>K to 12 Graduated</option>
+              <option>K to 12 Graduate</option>
               <option>UnderGrad College</option>
-              <option>On-going College</option>
-              <option>College Graduated</option>
+              <option>College Level</option>
+              <option>College Graduate</option>
               <option>Masteral</option>
+              <option>Vocational/Tesda</option>
               <option>N/A</option>
             </select>
           </div>
           <div class="input-group">
             <label>Religion</label>
-            <input type="text" name="religion">
+            <select name="religion">
+              <option value="">Select</option>
+              <option>Roman Catholic</option>
+              <option>Protestant / Evangelical</option>
+              <option>Islam</option>
+              <option>Other Christian groups</option>
+              <option>Indigenous / Animist / Others</option>
+            </select>
           </div>
           <div class="input-group">
             <label>PWD</label>
@@ -151,21 +162,22 @@
         </div>
       </div>
 
-      <!-- EMPLOYMENT -->
+      <!-- EMPLOYMENT & INCOME -->
       <div class="card">
         <h3>Employment & Income</h3>
         <div class="grid">
           <div class="input-group">
-            <label>Source of Income</label>
-            <select name="sourceOfIncome">
+            <label>Employment Category</label>
+            <select name="employmentCategory">
               <option value="">Select</option>
-              <option>Salary</option>
-              <option>Remittance</option>
-              <option>Allowances</option>
-              <option>Business, Net Income</option>
-              <option>Pensioner/Retiree</option>
-              <option>Investment</option>
-              <option>Dependent</option>
+              <option>Employed</option>
+              <option>Self-Employed</option>
+              <option>Business Owner</option>
+              <option>Student</option>
+              <option>Retired</option>
+              <option>Unemployed</option>
+              <option>OFW</option>
+              <option>Housewife/Househusband</option>
               <option>N/A</option>
             </select>
           </div>
@@ -173,37 +185,12 @@
             <label>Employment Type</label>
             <select name="employmentType">
               <option value="">Select</option>
-              <option>Employed</option>
-              <option>Unemployed</option>
-              <option>Self-Employed</option>
-              <option>Student</option>
-              <option>Housewife</option>
-              <option>Househusband</option>
-            </select>
-          </div>
-          <div class="input-group">
-            <label>Nature of Work (Ex. Manufacturing)</label>
-            <select name="natureOfWork">
-              <option value="">Select</option>
-              <option>AGRICULTURE/FARMING</option>
-              <option>REAL ESTATE</option>
-              <option>WHOLE/RETAIL TRADE/BUSINESS</option>
-              <option>FINANCE/INSURANCE/BANKING</option>
-              <option>CONSTRUCTION</option>
-              <option>MIXED INCOME EARNERS</option>
-              <option>HOME SERVICES</option>
-              <option>FOOD SERVICES</option>
-              <option>REPAIR SERVICES</option>
-              <option>RENTAL SERVICES</option>
-              <option>GOV’T SERVICES</option>
-              <option>MEDICAL/HEALTH SERVICES</option>
-              <option>BPO</option>
-              <option>HOTEL</option>
-              <option>FISHING</option>
-              <option>EDUCATION</option>
-              <option>MANUFACTURING</option>
-              <option>TRANSPORTATION</option>
-              <option>SUPPORT BASED INCOME</option>
+              <option>Full-time</option>
+              <option>Part-time</option>
+              <option>Contractual</option>
+              <option>Project-Based</option>
+              <option>Freelance</option>
+              <option>Seasonal</option>
               <option>N/A</option>
             </select>
           </div>
@@ -214,43 +201,82 @@
               <option>Regular</option>
               <option>Probationary</option>
               <option>Casual</option>
-              <option>Contractual</option>
-              <option>Project-Based</option>
-              <option>Part-Time</option>
-              <option>Job Order (JO)</option>
-              <option>Contract of Service (COS)</option>
+              <option>Fixed Term</option>
+              <option>Contract of Service</option>
               <option>N/A</option>
             </select>
           </div>
           <div class="input-group">
-            <label>Work / Job Title (Ex. Factory Worker)</label>
-            <input type="text" name="workJob">
+            <label>Employment Sector</label>
+            <select name="employmentSector">
+              <option value="">Select</option>
+              <option>Government</option>
+              <option>Private</option>
+              <option>NGO/Non-Profit</option>
+              <option>International Organization</option>
+              <option>N/A</option>
+            </select>
           </div>
           <div class="input-group">
-            <label>Designation (Ex. Sewer)</label>
-            <input type="text" name="designation">
+            <label>Industry</label>
+            <select name="industrySector">
+              <option value="">Select</option>
+              <option>Agriculture, Forestry, Fishing</option>
+              <option>Manufacturing</option>
+              <option>Construction</option>
+              <option>Wholesale and Retail Trade</option>
+              <option>Transportation and Storage</option>
+              <option>Accommodation and Food Service</option>
+              <option>Information and Communication</option>
+              <option>Financial and Insurance</option>
+              <option>Professional and Technical</option>
+              <option>Education</option>
+              <option>Human Health and Social Work</option>
+              <option>Public Administration</option>
+              <option>Securities</option>
+              <option>Other Industries</option>
+              <option>N/A</option>
+            </select>
           </div>
           <div class="input-group">
-            <label>Company Name</label>
+            <label>Occupation</label>
+            <input type="text" name="occupation">
+          </div>
+          <div class="input-group">
+            <label>Company/Organization Name</label>
             <input type="text" name="companyName">
+          </div>
+          <div class="input-group">
+            <label>Income Source</label>
+            <select name="incomeSource">
+              <option value="">Select</option>
+              <option>Employment Salary</option>
+              <option>Business Income</option>
+              <option>Pension</option>
+              <option>Remittance</option>
+              <option>Investment</option>
+              <option>Allowance</option>
+              <option>Dependent</option>
+              <option>N/A</option>
+            </select>
           </div>
           <div class="input-group">
             <label>Monthly Income</label>
             <select name="monthlyIncome">
               <option value="">Select</option>
-              <option>BELOW 10,000</option>
-              <option>10,001-15,000</option>
-              <option>15,001-20,000</option>
-              <option>20,001-30,000</option>
-              <option>30,001-50,000</option>
-              <option>50,001-100,000</option>
-              <option>100,000 up</option>
-              <option>N/A</option>
+              <option value="Below10000">BELOW 10,000</option>
+              <option value="10001-15000">10,001-15,000</option>
+              <option value="15001-20000">15,001-20,000</option>
+              <option value="20001-30000">20,001-30,000</option>
+              <option value="30001-50000">30,001-50,000</option>
+              <option value="50001-100000">50,001-100,000</option>
+              <option value="Above100000">Above 100,000</option>
+              <option value="N/A">N/A</option>
             </select>
           </div>
           <div class="input-group">
             <label>TIN</label>
-            <input type="text" name="tin">
+            <input type="text" name="tin" pattern="[0-9]{9,12}" title="Enter 9-12 digit TIN">
           </div>
           <div class="input-group full">
             <label>Other Business / Source of Income</label>

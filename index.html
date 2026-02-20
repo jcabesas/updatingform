@@ -21,7 +21,7 @@
           </div>
           <div class="input-group">
             <label>Middle Name</label>
-            <input type="text" name="middleName">
+            <input type="text" name="middleName" required>
           </div>
           <div class="input-group">
             <label>Last Name</label>
@@ -114,7 +114,7 @@
         <div class="grid">
           <div class="input-group">
             <label>Education Level</label>
-            <select name="educationLevel">
+            <select name="educationLevel" required>
               <option value="">Select</option>
               <option>UnderGrad Elementary</option>
               <option>Elementary Level</option>
@@ -135,7 +135,7 @@
           </div>
           <div class="input-group">
             <label>Religion</label>
-            <select name="religion">
+            <select name="religion" required>
               <option value="">Select</option>
               <option>Roman Catholic</option>
               <option>Protestant / Evangelical</option>
@@ -276,7 +276,7 @@
           </div>
           <div class="input-group">
             <label>TIN</label>
-            <input type="text" name="tin">
+            <input type="text" name="tin" pattern="[0-9]{9,12}" title="Enter 9-12 digit TIN">
           </div>
           <div class="input-group full">
             <label>Other Business / Source of Income</label>

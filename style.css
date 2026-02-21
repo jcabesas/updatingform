@@ -90,3 +90,19 @@ button:hover {
   background-color: #fee2e2;
   color: #991b1b;
 }
+
+.form-message {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  display: none;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.form-message.show {
+  display: block;
+  opacity: 1;
+}

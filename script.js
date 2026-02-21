@@ -6,37 +6,32 @@ const submitBtn = form.querySelector("button");
 form.addEventListener("submit", function(e) {
   e.preventDefault();
 
+  // Disable button
   submitBtn.disabled = true;
   submitBtn.textContent = "Submitting...";
 
+  // SHOW MESSAGE IMMEDIATELY (no waiting for Google)
+  messageDiv.textContent =
+    "Thank you for updating your Membership Profile with us. Wait for our email to the email address you provided regarding the success of your profile updating.";
+
+  messageDiv.className = "form-message success";
+  messageDiv.style.display = "block";
+
+  messageDiv.scrollIntoView({ behavior: "smooth" });
+
   const formData = new FormData(form);
 
+  // Send in background
   fetch(scriptURL, {
-    method: 'POST',
-    body: formData
+    method: "POST",
+    body: formData,
+    mode: "no-cors"   // VERY IMPORTANT
   })
-  .then(response => response.text())
-  .then(data => {
-
-    // SUCCESS MESSAGE (YOUR EXACT REQUEST)
-    messageDiv.textContent = 
-      "Thank you for updating your Membership Profile with us. Wait for our email to the email address you provided regarding the success of your profile updating.";
-
-    messageDiv.className = "form-message success";
-    messageDiv.style.display = "block";
-
+  .then(() => {
     form.reset();
-
-    // Scroll to message
-    messageDiv.scrollIntoView({ behavior: "smooth" });
-
   })
-  .catch(error => {
-    console.error(error);
-
-    messageDiv.textContent = "Submission failed. Please try again.";
-    messageDiv.className = "form-message error";
-    messageDiv.style.display = "block";
+  .catch(() => {
+    console.log("Background submit failed but message already shown.");
   })
   .finally(() => {
     submitBtn.disabled = false;
